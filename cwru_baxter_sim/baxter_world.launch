@@ -27,10 +27,6 @@
 
   <!-- Publish a static transform between the world and the base of the robot -->
   <node pkg="tf" type="static_transform_publisher" name="base_to_world" args="0 0 0 0 0 0 1 world base 100" />
-  <!-- wsn: transform for kinect -->
-<!--node pkg="tf" type="static_transform_publisher" name="camera_link_frame_bdcst" args="0 0 0  0 0 0 1 kinect_link camera_link 100"/>
-
-<node pkg="tf" type="static_transform_publisher" name="kinect_calib" args="0 0 0 -0.500 0.500 -0.500 0.500 kinect_link kinect_pc_frame 100"/-->
 
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
@@ -52,5 +48,8 @@
 
   <!-- ros_control baxter launch file -->
   <include file="$(find baxter_sim_hardware)/launch/baxter_sdk_control.launch" />
+
+  <node pkg="tf" type="static_transform_publisher" name="camera_link_frame_bdcst" args="0 0 0  0 0 0 1 kinect_link camera_link 100"/>
+<node pkg="tf" type="static_transform_publisher" name="kinect_calib" args="0 0 0 -0.500 0.500 -0.500 0.500 kinect_link kinect_pc_frame 100"/>
 
 </launch>
